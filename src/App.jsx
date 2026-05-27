@@ -228,12 +228,20 @@ function App() {
         </div>
       </div>
 
-      {/* Banner de Recordatorios */}
+   {/* Banner de Recordatorios */}
       {dueTasksToday.length > 0 && (
         <div className="alert alert-warning mx-3 shadow-sm d-flex align-items-center rounded-4" role="alert">
           <i className="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
           <div>
-            <strong>¡Atención {userRole}!</strong> Tienes {dueTasksToday.length} tarea(s) cuya fecha límite es hoy y aún no han sido completadas.
+            {userRole === 'Profesor' ? (
+              <span>
+                <strong>¡Aviso de Seguimiento!</strong> Hay <strong>{dueTasksToday.length}</strong> tarea(s) en tu tablero que vencen hoy. Ideal para revisar el avance de los alumnos.
+              </span>
+            ) : (
+              <span>
+                <strong>¡Alerta de Entrega!</strong> Tienes <strong>{dueTasksToday.length}</strong> tarea(s) pendiente(s) que vencen HOY. ¡Apresúrate a completarlas!
+              </span>
+            )}
           </div>
         </div>
       )}
